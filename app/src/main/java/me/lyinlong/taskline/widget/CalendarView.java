@@ -1,9 +1,5 @@
 package me.lyinlong.taskline.widget;
 
-/**
- * Created by rock on 2016/10/22.
- */
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -20,13 +17,21 @@ import java.util.Calendar;
 import java.util.List;
 
 import me.lyinlong.taskline.R;
+import me.lyinlong.taskline.utils.BitmapUtils;
 
-/** * Created by zhouyou on 2016/7/25. * Class desc: * * 自定义日历View，可多选 */
+/**
+ * 自定义CalendarView
+ * 参考：https://github.com/Airsaid/CalendarView
+ */
 public class CalendarView extends View {
 
-    // 列的数量
+    /**
+     * 列的数量
+     */
     private static final int NUM_COLUMNS    =   7;
-    // 行的数量
+    /**
+     * 行的数量
+     */
     private static final int NUM_ROWS       =   6;
 
     /**
@@ -34,20 +39,37 @@ public class CalendarView extends View {
      */
     private List<String> taskDates;
 
-    /** * 以选日期数据 */
+    /**
+     * 以选日期数据
+     */
     private List<String> mSelectedDates = new ArrayList<>();
 
-    // 背景颜色
-    private int mBgColor = Color.parseColor("#F7F7F7");
-    // 天数默认颜色
-    private int normalColor = Color.parseColor("#555555");
-    // 天数不可选颜色
-    private int mDayNotOptColor = Color.parseColor("#CBCBCB");
-    // 天数选择后颜色
-    private int mDayPressedColor = Color.WHITE;
-    // 天数字体大小
+
+    /**
+     * 日期已存在任务的背景色
+     */
+    private int hasTaskBGColor = Color.argb(200,99, 219, 255);
+    /**
+     * 日期已存在任务的日期字体颜色
+     */
+    private int hasTaskTextColor = Color.parseColor("#FFFFFF");
+    /**
+     * 默认日期字体颜色
+     */
+    private int normalTextColor = Color.parseColor("#555555");
+    /**
+     * 默认日期背景颜色
+     */
+    private int normalBGColor = Color.parseColor("#F7F7F7");
+
+
+    /**
+     * 天数字体大小
+     */
     private int mDayTextSize = 14;
-    // 是否可以被点击状态
+    /**
+     * 是否可以被点击状态
+     */
     private boolean mClickable = true;
 
     private DisplayMetrics mMetrics;
@@ -106,7 +128,8 @@ public class CalendarView extends View {
         setSelYTD(mCurYear, mCurMonth, mCurDate);
 
         // 有任务的背景
-        bitmap_task    = BitmapFactory.decodeResource(getResources(), R.mipmap.bullet_red);
+        bitmap_task = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_hastasks);
+        bitmap_task = BitmapUtils.getResizedBitmap(bitmap_task ,80 , 80);
         // 未选中背景
 //        mBgNotOptBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
     }
@@ -122,7 +145,7 @@ public class CalendarView extends View {
         initSize();
 
         // 绘制背景
-        mPaint.setColor(mBgColor);
+        mPaint.setColor(normalBGColor);
         canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), mPaint);
 
         mDays = new int[6][7];
@@ -146,19 +169,24 @@ public class CalendarView extends View {
 
             // 判断当前是否已经有任务
             if(taskDates.contains(getSelData(mSelYear, mSelMonth, mDays[row][column]))){
-                // 没有任务
-                if(!mSelectedDates.contains(getSelData(mSelYear, mSelMonth, mDays[row][column]))){
-                    // 没有点击过，绘制默认背景（默认不需要背景，不绘制）
-                    canvas.drawBitmap(bitmap_task, startX - 22, startY - 55, mPaint);
-                    mPaint.setColor(normalColor);
-                }else{  // 有任务
-//                    canvas.drawBitmap(bitmap_task, startX - 22, startY - 55, mPaint);
-                    mPaint.setColor(mDayPressedColor);
-                }
+                // 该日期已存在任务信息
+//                if(!mSelectedDates.contains(getSelData(mSelYear, mSelMonth, mDays[row][column]))){
+//                    // 绘制背景颜色
+//                    mPaint.setColor(hasTaskBGColor);
+//                    canvas.drawCircle(startX + 20.8f,startY - 25 ,60,mPaint);
+//                    mPaint.setColor(hasTaskTextColor);
+//                }else{
+////                    canvas.drawBitmap(bitmap_task, startX - 22, startY - 55, mPaint);
+//                    mPaint.setColor(Color.RED);
+//                }
+                // 绘制背景颜色
+                mPaint.setColor(hasTaskBGColor);
+                canvas.drawCircle(startX + 20.8f,startY - 25 ,60,mPaint);
+                mPaint.setColor(hasTaskTextColor);
                 // 绘制天数
                 canvas.drawText(dayStr, startX, startY - 10, mPaint);
             }else{
-                mPaint.setColor(normalColor);
+                mPaint.setColor(normalTextColor);
                 canvas.drawText(dayStr, startX, startY, mPaint);
             }
         }

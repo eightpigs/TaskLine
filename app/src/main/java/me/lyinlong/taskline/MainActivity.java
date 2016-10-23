@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDatas = new ArrayList<>();
         mDatas.add("20161022");
         mDatas.add("20161021");
-        mDatas.add("20160803");
-        mDatas.add("20160816");
-        mDatas.add("20160817");
-        mDatas.add("20160826");
-        mDatas.add("20160910");
-        mDatas.add("20160911");
-        mDatas.add("20160912");
+        mDatas.add("20161023");
+        mDatas.add("20161024");
+        mDatas.add("20161027");
+        mDatas.add("20161028");
+        mDatas.add("20161019");
+        mDatas.add("20161016");
+        mDatas.add("20161014");
     }
 
     @Override
