@@ -196,6 +196,7 @@ public class CalendarView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Log.d("\n\n", "onTouchEvent:  进入的滑动事件");
         int eventCode = event.getAction();
         switch(eventCode){
             case MotionEvent.ACTION_DOWN:
@@ -224,6 +225,8 @@ public class CalendarView extends View {
      * @param y
      */
     private void onClick(int x, int y){
+        System.out.println("点击事件");
+        Log.d("aaaaaaaaaaa", "onClick: ");
         int row = y / mRowSize;
         int column = x / mColumnSize;
         setSelYTD(mSelYear, mSelMonth, mDays[row][column]);

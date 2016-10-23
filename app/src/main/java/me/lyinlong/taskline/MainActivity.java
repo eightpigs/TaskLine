@@ -16,7 +16,7 @@ import me.lyinlong.taskline.widget.CalendarView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView mTextSelectMonth;
+    private TextView tvSelectDate;
     private ImageButton mLastMonthView;
     private ImageButton mNextMonthView;
     private CalendarView mCalendarView;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextSelectMonth = (TextView) findViewById(R.id.txt_select_month);
+        tvSelectDate = (TextView) findViewById(R.id.tvSelectDate);
         mLastMonthView = (ImageButton) findViewById(R.id.img_select_last_month);
         mNextMonthView = (ImageButton) findViewById(R.id.img_select_next_month);
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        mTextSelectMonth.setText(mCalendarView.getDate());
+        tvSelectDate.setText(mCalendarView.getDate());
     }
 
     private void initData() {
@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.img_select_last_month:
                 mCalendarView.setLastMonth();
-                mTextSelectMonth.setText(mCalendarView.getDate());
+                tvSelectDate.setText(mCalendarView.getDate());
                 break;
             case R.id.img_select_next_month:
                 mCalendarView.setNextMonth();
-                mTextSelectMonth.setText(mCalendarView.getDate());
+                tvSelectDate.setText(mCalendarView.getDate());
                 break;
         }
     }
