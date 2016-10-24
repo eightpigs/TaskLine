@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,37 +12,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="me.lyinlong.taskline.MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvSelectDateYear"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:textSize="30sp"/>
+    <TextView
+        android:id="@+id/tvSelectDateMouth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="76dp"/>
 
-        <TextView
-            android:id="@+id/tvSelectDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp"
-            android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/tvThisMouthTaskCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:textSize="20sp"/>
 
-        <TextView
-            android:id="@+id/tvThisMouthTaskCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp"
-            android:textSize="20sp"/>
 
-        <me.lyinlong.taskline.widget.WeekView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+    <me.lyinlong.taskline.widget.WeekView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"/>
 
-        <me.lyinlong.taskline.widget.CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"/>
+    <me.lyinlong.taskline.widget.CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="80dp"/>
 
-    </LinearLayout>
 </RelativeLayout>

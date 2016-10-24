@@ -21,9 +21,9 @@ public class WeekView extends View {
     // 字体大小
     private int mWeekTextSize = 14;
     // 字体颜色
-    private int mWeekTextColor = Color.WHITE;
+    private int mWeekTextColor = Color.parseColor("#555555");
     // 背景颜色
-    private int mWeekBgColor = Color.parseColor("#7EBDFC");
+    private int mWeekBgColor = Color.parseColor("#f3f3f3");
 
     private DisplayMetrics mMetrics;
     private final Paint mPaint;

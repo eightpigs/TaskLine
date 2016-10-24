@@ -8,10 +8,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,9 +18,6 @@ import java.util.List;
 import me.lyinlong.taskline.MainActivity;
 import me.lyinlong.taskline.R;
 import me.lyinlong.taskline.utils.BitmapUtils;
-
-import static me.lyinlong.taskline.R.id.text;
-import static me.lyinlong.taskline.R.id.tvSelectDate;
 
 /**
  * 自定义CalendarView
@@ -94,11 +89,6 @@ public class CalendarView extends View {
     private int mMonthDays;
     // 当月第一天位于周几
     private int mWeekNumber;
-    // 已选中背景Bitmap
-    //private Bitmap mBgOptBitmap;
-    // 未选中背景Bitmap
-    //private Bitmap mBgNotOptBitmap;
-
 
     /**
      * 有任务的背景
@@ -212,15 +202,16 @@ public class CalendarView extends View {
 
                 int upX = (int) event.getX();
 
+                String []nowMouth = null;
                 // 滑动
                 if(upX - downX >= 100) {
                     setLastMonth();
-                    MainActivity.tvSelectDate.setText(getDate());
                 }else if(upX - downX <= -100){
                     setNextMonth();
-                    MainActivity.tvSelectDate.setText(getDate());
                 }
-
+                nowMouth = getDate().split("-");
+                MainActivity.tvSelectDateYear.setText(nowMouth[0] + " / ");
+                MainActivity.tvSelectDateMouth.setText(nowMouth[1]);
                 // 点击
                 int upY = (int) event.getY();
                 if(Math.abs(upX - downX) < 10 && Math.abs(upY - downY) < 10){
