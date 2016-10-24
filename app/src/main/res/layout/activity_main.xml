@@ -33,39 +33,6 @@
             android:padding="10dp"
             android:textSize="20sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:gravity="center_vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#EDEDED">
-
-                <ImageButton
-                    android:id="@+id/img_select_last_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/img_select_next_month"
-                    android:background="?android:actionBarItemBackground"
-                    android:padding="10dp"
-                    android:src="@mipmap/ic_arrow_left_gray"/>
-
-                <ImageButton
-                    android:id="@+id/img_select_next_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="?android:actionBarItemBackground"
-                    android:padding="10dp"
-                    android:src="@mipmap/ic_arrow_rigth_gray"/>
-            </RelativeLayout>
-        </LinearLayout>
-
         <me.lyinlong.taskline.widget.WeekView
             android:layout_width="match_parent"
             android:layout_height="30dp"/>

@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         tvSelectDate = (TextView) findViewById(R.id.tvSelectDate);
-        mLastMonthView = (ImageButton) findViewById(R.id.img_select_last_month);
-        mNextMonthView = (ImageButton) findViewById(R.id.img_select_next_month);
+//        mLastMonthView = (ImageButton) findViewById(R.id.img_select_last_month);
+//        mNextMonthView = (ImageButton) findViewById(R.id.img_select_next_month);
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
 
-        mLastMonthView.setOnClickListener(this);
-        mNextMonthView.setOnClickListener(this);
+//        mLastMonthView.setOnClickListener(this);
+//        mNextMonthView.setOnClickListener(this);
 
         // 初始化可选日期
         initData();
@@ -79,15 +79,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.img_select_last_month:
-                mCalendarView.setLastMonth();
-                tvSelectDate.setText(mCalendarView.getDate());
-                break;
-            case R.id.img_select_next_month:
-                mCalendarView.setNextMonth();
-                tvSelectDate.setText(mCalendarView.getDate());
-                break;
-        }
+//        switch (view.getId()){
+//            case R.id.img_select_last_month:
+//                mCalendarView.setLastMonth();
+//                tvSelectDate.setText(mCalendarView.getDate());
+//                break;
+//            case R.id.img_select_next_month:
+//                mCalendarView.setNextMonth();
+//                tvSelectDate.setText(mCalendarView.getDate());
+//                break;
+//        }
     }
 }

@@ -207,21 +207,27 @@ public class CalendarView extends View {
                 downX = (int) event.getX();
                 downY = (int) event.getY();
                 break;
-            case MotionEvent.ACTION_MOVE:
-
-
-                break;
             case MotionEvent.ACTION_UP:
                 if(!mClickable) return true;
 
-                int tempX = (int) event.getX();
-                if(tempX - downX >= 100) {
+                int upX = (int) event.getX();
+
+                // 滑动
+                if(upX - downX >= 100) {
                     setLastMonth();
                     MainActivity.tvSelectDate.setText(getDate());
-                }else if(tempX - downX <= -100){
+                }else if(upX - downX <= -100){
                     setNextMonth();
                     MainActivity.tvSelectDate.setText(getDate());
                 }
+
+                // 点击
+                int upY = (int) event.getY();
+                if(Math.abs(upX - downX) < 10 && Math.abs(upY - downY) < 10){
+                    performClick();
+                    onClick((upX + downX) / 2, (upY + downY) / 2);
+                }
+
                 break;
         }
         return true;
