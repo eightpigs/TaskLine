@@ -123,8 +123,8 @@ public class CalendarView extends View {
         setSelYTD(mCurYear, mCurMonth, mCurDate);
 
         // 有任务的背景
-        bitmap_task = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_hastasks);
-        bitmap_task = BitmapUtils.getResizedBitmap(bitmap_task ,80 , 80);
+//        bitmap_task = BitmapFactory.decodeResource(getResources(), R.mipmap.logo);
+//        bitmap_task = BitmapUtils.getResizedBitmap(bitmap_task ,80 , 80);
         // 未选中背景
 //        mBgNotOptBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
     }
