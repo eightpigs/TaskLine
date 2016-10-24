@@ -11,13 +11,18 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import me.lyinlong.taskline.MainActivity;
 import me.lyinlong.taskline.R;
 import me.lyinlong.taskline.utils.BitmapUtils;
+
+import static me.lyinlong.taskline.R.id.text;
+import static me.lyinlong.taskline.R.id.tvSelectDate;
 
 /**
  * 自定义CalendarView
@@ -196,7 +201,6 @@ public class CalendarView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d("\n\n", "onTouchEvent:  进入的滑动事件");
         int eventCode = event.getAction();
         switch(eventCode){
             case MotionEvent.ACTION_DOWN:
@@ -204,15 +208,19 @@ public class CalendarView extends View {
                 downY = (int) event.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
+
+
                 break;
             case MotionEvent.ACTION_UP:
                 if(!mClickable) return true;
 
-                int upX = (int) event.getX();
-                int upY = (int) event.getY();
-                if(Math.abs(upX - downX) < 10 && Math.abs(upY - downY) < 10){
-                    performClick();
-                    onClick((upX + downX) / 2, (upY + downY) / 2);
+                int tempX = (int) event.getX();
+                if(tempX - downX >= 100) {
+                    setLastMonth();
+                    MainActivity.tvSelectDate.setText(getDate());
+                }else if(tempX - downX <= -100){
+                    setNextMonth();
+                    MainActivity.tvSelectDate.setText(getDate());
                 }
                 break;
         }
@@ -225,8 +233,6 @@ public class CalendarView extends View {
      * @param y
      */
     private void onClick(int x, int y){
-        System.out.println("点击事件");
-        Log.d("aaaaaaaaaaa", "onClick: ");
         int row = y / mRowSize;
         int column = x / mColumnSize;
         setSelYTD(mSelYear, mSelMonth, mDays[row][column]);
