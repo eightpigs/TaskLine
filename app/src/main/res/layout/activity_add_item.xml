@@ -7,14 +7,15 @@
     tools:context="me.lyinlong.taskline.AddItemActivity">
 
     <RelativeLayout
+        android:id="@+id/rlTaskContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorLine"
-        android:paddingTop="200dp"
+        android:paddingTop="150dp"
         android:paddingBottom="20dp">
 
         <EditText
-            android:id="@+id/etTaskTitle"
+            android:id="@+id/etTaskContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/additem_title_hint"
@@ -25,10 +26,22 @@
             android:textSize="15dp"
             />
 
-        
-
-
-
     </RelativeLayout>
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/rlTaskContent"
+       android:paddingTop="20dp">
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textSize="18dp"
+           android:padding="10dp"
+           android:text="时间"/>
+
+   </LinearLayout>
 
 </RelativeLayout>
