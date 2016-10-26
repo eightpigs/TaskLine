@@ -6,4 +6,6 @@
     <color name="colorLine">#0c98ef</color>
     <color name="colorWhite">#FFF</color>
     <color name="colorTipText">#555</color>
+    <color name="colorHint">#999</color>
+    <color name="colorDefault">#F9FAF9</color>
 </resources>

@@ -104,8 +104,55 @@
            android:textSize="@dimen/tipTextSize"
            />
 
-       
+       <!--<TextView-->
+           <!--android:layout_width="match_parent"-->
+           <!--android:layout_height="wrap_content"-->
+           <!--android:layout_below="@id/tv_addTask_endTime"-->
+           <!--android:background="@drawable/border"-->
+           <!--android:height="1.2dp"-->
+           <!--android:layout_marginTop="20dp"-->
+           <!--android:layout_marginLeft="-30dp"-->
+           <!--/>-->
 
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="1px"
+           android:background="@android:color/darker_gray"
+           android:layout_below="@id/tv_addTask_endTime"
+           android:layout_marginTop="20dp"
+           android:layout_marginRight="10dp"
+           />
+
+       <ImageView
+           android:layout_width="22dp"
+           android:layout_height="22dp"
+           android:src="@mipmap/ic_location"
+           android:layout_marginTop="40dp"
+           android:layout_below="@id/tv_addTask_endTime"
+           />
+
+        <EditText
+            android:id="@+id/etLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_addTask_endTime"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="10dp"
+            android:hint="@string/tip_location"
+            android:textSize="@dimen/tipTextSize"
+            android:backgroundTint="@color/colorDefault"
+            />
+
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="1px"
+           android:background="@android:color/darker_gray"
+           android:layout_below="@id/etLocation"
+           android:layout_marginTop="10dp"
+           android:layout_marginRight="10dp"
+           />
 
 
    </RelativeLayout>
