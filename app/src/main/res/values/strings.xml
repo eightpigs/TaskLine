@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TaskLine</string>
     <string name="blank"> </string>
-    <string name="additem_title_hint">提醒我...</string>
+    <string name="placeholder_additem_title_hint">提醒我...</string>
+    <string name="tip_allDay">全天</string>
+    <string name="tip_time">默认时间</string>
 
 </resources>
