@@ -1,9 +1,10 @@
 package me.lyinlong.taskline;
 
-import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -62,10 +63,30 @@ public class AddItemActivity extends AppCompatActivity {
         tvAddTaskStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                show_cusAlertDialog(R.layout.layout_date_choose);
             }
         });
 
+        tvAddTaskStartHour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                show_cusAlertDialog(R.layout.layout_time_choose);
+            }
+        });
+
+    }
+
+    private void show_cusAlertDialog(int res){
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddItemActivity.this);  //先得到构造器
+//        builder.setTitle("自定义dialog");             //设置标题
+//        builder.setIcon(R.mipmap.ic_launcher);//设置图标，图片id即可
+
+        //  载入布局
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(res,null);
+        builder.setView(layout);
+        //  显示
+        builder.create().show();
     }
 
     @Override
