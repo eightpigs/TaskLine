@@ -8,4 +8,5 @@
     <color name="colorTipText">#555</color>
     <color name="colorHint">#999</color>
     <color name="colorDefault">#F9FAF9</color>
+    <color name="colorBlack">#2d2d2d</color>
 </resources>

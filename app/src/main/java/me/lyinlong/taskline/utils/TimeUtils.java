@@ -70,7 +70,7 @@ public class TimeUtils {
             if (returnDate)
                 return cal.getTime();
 
-            return new SimpleDateFormat(formatStr).format(new Date());
+            return new SimpleDateFormat(formatStr).format(cal.getTime());
 
         } catch (ParseException e) {
             e.printStackTrace();

@@ -4,7 +4,8 @@
     android:id="@+id/activity_add_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.lyinlong.taskline.AddItemActivity">
+    tools:context="me.lyinlong.taskline.AddItemActivity"
+    >
 
     <RelativeLayout
         android:id="@+id/rlTaskContent"
@@ -48,7 +49,7 @@
            android:layout_marginLeft="40dp"
            android:layout_marginTop="2dp"
            android:text="@string/tip_allDay"
-           android:textColor="@color/colorTipText"
+           android:textColor="@color/colorBlack"
            android:textSize="@dimen/tipTextSize"
            />
 
@@ -69,6 +70,7 @@
            android:layout_marginLeft="40dp"
            android:text="@string/tip_time"
            android:textSize="@dimen/tipTextSize"
+           android:textColor="@color/colorBlack"
            />
 
        <TextView
@@ -79,6 +81,7 @@
            android:layout_marginTop="@dimen/tipTextMarginTop"
            android:layout_alignParentRight="true"
            android:layout_marginRight="14dp"
+           android:textColor="@color/colorBlack"
            android:textSize="@dimen/tipTextSize"
            />
 
@@ -89,6 +92,7 @@
            android:layout_below="@id/tv_addTask_startTime"
            android:layout_marginTop="@dimen/tipTextMarginTop"
            android:layout_marginLeft="40dp"
+           android:textColor="@color/colorBlack"
            android:text="@string/tip_time"
            android:textSize="@dimen/tipTextSize"
            />
@@ -100,26 +104,17 @@
            android:layout_below="@id/tv_addTask_startHour"
            android:layout_marginTop="@dimen/tipTextMarginTop"
            android:layout_alignParentRight="true"
+           android:textColor="@color/colorBlack"
            android:layout_marginRight="14dp"
            android:textSize="@dimen/tipTextSize"
            />
 
-       <!--<TextView-->
-           <!--android:layout_width="match_parent"-->
-           <!--android:layout_height="wrap_content"-->
-           <!--android:layout_below="@id/tv_addTask_endTime"-->
-           <!--android:background="@drawable/border"-->
-           <!--android:height="1.2dp"-->
-           <!--android:layout_marginTop="20dp"-->
-           <!--android:layout_marginLeft="-30dp"-->
-           <!--/>-->
-
-       <View
+        <View
            android:layout_width="match_parent"
            android:layout_height="1px"
            android:background="@android:color/darker_gray"
            android:layout_below="@id/tv_addTask_endTime"
-           android:layout_marginTop="20dp"
+           android:layout_marginTop="30dp"
            android:layout_marginRight="10dp"
            />
 
@@ -127,7 +122,7 @@
            android:layout_width="22dp"
            android:layout_height="22dp"
            android:src="@mipmap/ic_location"
-           android:layout_marginTop="40dp"
+           android:layout_marginTop="50dp"
            android:layout_below="@id/tv_addTask_endTime"
            />
 
@@ -137,12 +132,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_addTask_endTime"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginRight="10dp"
             android:paddingTop="10dp"
             android:hint="@string/tip_location"
             android:textSize="@dimen/tipTextSize"
             android:backgroundTint="@color/colorDefault"
+            android:textColor="@color/colorTipText"
             />
 
        <View
@@ -154,6 +150,25 @@
            android:layout_marginRight="10dp"
            />
 
+       <ImageView
+           android:layout_width="22dp"
+           android:layout_height="22dp"
+           android:src="@mipmap/ic_alarm"
+           android:layout_marginTop="29dp"
+           android:layout_below="@id/etLocation"
+           />
+
+       <TextView
+            android:id="@+id/tvBeforehand"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="40dp"
+           android:layout_marginTop="30dp"
+           android:text="@string/tip_beforehand"
+           android:textColor="@color/colorBlack"
+           android:textSize="@dimen/tipTextSize"
+           android:layout_below="@id/etLocation"
+           />
 
    </RelativeLayout>
 

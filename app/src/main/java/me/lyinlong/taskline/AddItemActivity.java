@@ -1,13 +1,19 @@
 package me.lyinlong.taskline;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import me.lyinlong.taskline.utils.TimeUtils;
 
 public class AddItemActivity extends AppCompatActivity {
 
+    private GestureDetector gestureDetector;
     /**
      * 任务的开始日期
      */
@@ -24,10 +30,18 @@ public class AddItemActivity extends AppCompatActivity {
      * 任务结束时间
      */
     private TextView tvTaskEndHour;
+
+    public static Toast toast;
+    public static AddItemActivity _this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+
+        _this = this;
+
+        gestureDetector = new GestureDetector(this.getApplicationContext(), new DoubleClickView());
 
         tvAddTaskStartTime = (TextView)findViewById(R.id.tv_addTask_startTime);
         tvAddTaskEndTime = (TextView)findViewById(R.id.tv_addTask_endTime);
@@ -45,7 +59,36 @@ public class AddItemActivity extends AppCompatActivity {
         tvAddTaskEndTime.setText(endTimeSplit[0]);
         tvTaskEndHour.setText(endTimeSplit[1]);
 
+        tvAddTaskStartTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
 
+    }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        //Single Tap
+        return gestureDetector.onTouchEvent(e);
+    }
+
+}
+
+/**
+ * 双击实现
+ */
+class DoubleClickView extends GestureDetector.SimpleOnGestureListener {
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return true;
+    }
+    // event when double tap occurs
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+        AddItemActivity.toast.makeText(AddItemActivity._this,"已保存",Toast.LENGTH_SHORT).show();
+        return true;
     }
 }

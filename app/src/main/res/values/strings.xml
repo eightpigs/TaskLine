@@ -10,5 +10,7 @@
 
     <string name="tip_location">添加地点... </string>
 
+    <string name="tip_beforehand">提前20分钟</string>
+
 
 </resources>
