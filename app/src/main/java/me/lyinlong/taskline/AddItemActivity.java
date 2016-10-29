@@ -1,16 +1,19 @@
 package me.lyinlong.taskline;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.DatePicker;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
+import android.widget.*;
 import me.lyinlong.taskline.utils.InterfaceUtils;
+import me.lyinlong.taskline.utils.KeyboradUtils;
 import me.lyinlong.taskline.utils.TimeUtils;
+
+import static me.lyinlong.taskline.AddItemActivity._this;
 
 public class AddItemActivity extends AppCompatActivity {
 
@@ -28,6 +31,8 @@ public class AddItemActivity extends AppCompatActivity {
     private DatePicker mDatePicker;
     // 时间选择
     private TimePicker mTimePicker;
+    // 提醒时间
+    private EditText metRemind;
 
     public static Toast toast;
     public static AddItemActivity _this;
@@ -48,17 +53,22 @@ public class AddItemActivity extends AppCompatActivity {
         tvTaskEndHour = (TextView)findViewById(R.id.tv_addTask_endHour);
         mDatePicker = (DatePicker)findViewById(R.id.dpChooseDate);
         mTimePicker = (TimePicker)findViewById(R.id.tpChooseTime);
+        metRemind = (EditText)findViewById(R.id.etRemind);
 
         // 设置默认选择的日期时间
         setNormalDateTime();
+       metRemind.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+           @Override
+           public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+               if(event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
+                   KeyboradUtils.showOrHide(AddItemActivity.this);
+                   // 保存操作
 
-//        mDatePicker.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                toast.makeText(AddItemActivity._this, mDatePicker.getDayOfMonth() ,Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
+                   return true;
+               }
+               return false;
+           }
+       });
     }
 
     /**
@@ -103,13 +113,11 @@ public class AddItemActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         //Single Tap
         return gestureDetector.onTouchEvent(e);
     }
-
 }
 
 /**
@@ -124,7 +132,22 @@ class DoubleClickView extends GestureDetector.SimpleOnGestureListener {
     // event when double tap occurs
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        AddItemActivity.toast.makeText(AddItemActivity._this,"已保存",Toast.LENGTH_SHORT).show();
+        AddItemActivity.toast.makeText(_this,"已保存",Toast.LENGTH_SHORT).show();
         return true;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+//        AddItemActivity.toast.makeText(AddItemActivity._this,"长按",Toast.LENGTH_SHORT).show();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(AddItemActivity._this);  //先得到构造器
+        builder.setMessage("确定要删除该任务吗？")
+                .setCancelable(false)
+                .setPositiveButton("确定",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        AddItemActivity.toast.makeText(AddItemActivity._this,"任务已删除",Toast.LENGTH_SHORT).show();
+                    }
+                }).setNegativeButton("取消", null);
+        builder.create().show();
+        super.onLongPress(e);
     }
 }

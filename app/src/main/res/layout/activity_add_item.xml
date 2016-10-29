@@ -4,21 +4,20 @@
     android:id="@+id/activity_add_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.lyinlong.taskline.AddItemActivity"
-    >
+    tools:context="me.lyinlong.taskline.AddItemActivity">
 
     <RelativeLayout
         android:id="@+id/rlTaskContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="209dp"
         android:background="@color/colorLine"
-        android:paddingTop="150dp"
         android:paddingBottom="20dp">
 
         <EditText
             android:id="@+id/etTaskContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
             android:hint="@string/placeholder_additem_title_hint"
             android:backgroundTint="@color/colorLine"
             android:padding="10dp"
@@ -31,6 +30,7 @@
 
 
    <RelativeLayout
+       android:id="@+id/relativel_content"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_below="@id/rlTaskContent"
@@ -158,18 +158,40 @@
            android:layout_below="@id/etLocation"
            />
 
-       <TextView
-            android:id="@+id/tvBeforehand"
+       <!--<TextView-->
+           <!--android:id="@+id/tvBeforehand"-->
+           <!--android:layout_width="wrap_content"-->
+           <!--android:layout_height="wrap_content"-->
+           <!--android:layout_marginLeft="40dp"-->
+           <!--android:layout_marginTop="30dp"-->
+           <!--android:text="@string/tip_beforehand"-->
+           <!--android:textColor="@color/colorBlack"-->
+           <!--android:textSize="@dimen/tipTextSize"-->
+           <!--android:layout_below="@id/etLocation"-->
+           <!--/>-->
+
+       <EditText
+           android:id="@+id/etRemind"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
+           android:layout_below="@id/etLocation"
+           android:backgroundTint="@color/colorDefault"
            android:layout_marginLeft="40dp"
-           android:layout_marginTop="30dp"
-           android:text="@string/tip_beforehand"
+           android:layout_marginTop="20dp"
            android:textColor="@color/colorBlack"
            android:textSize="@dimen/tipTextSize"
-           android:layout_below="@id/etLocation"
-           />
+           android:hint="@string/tip_beforehand"
+           android:textColorHint="@color/colorBlack"
+       />
 
    </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/relativel_delete"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_below="@+id/relativel_content"-->
+    <!--/>-->
 
 </RelativeLayout>
