@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
-import me.lyinlong.taskline.MainActivity;
+import me.lyinlong.taskline.CalendarActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -206,8 +206,8 @@ public class CalendarView extends View {
                     setNextMonth();
                 }
                 nowMouth = getDate().split("-");
-                MainActivity.tvSelectDateYear.setText(nowMouth[0] + " / ");
-                MainActivity.tvSelectDateMouth.setText(nowMouth[1]);
+                CalendarActivity.tvSelectDateYear.setText(nowMouth[0] + " / ");
+                CalendarActivity.tvSelectDateMouth.setText(nowMouth[1]);
                 // 点击
                 int upY = (int) event.getY();
                 if(Math.abs(upX - downX) < 10 && Math.abs(upY - downY) < 10){

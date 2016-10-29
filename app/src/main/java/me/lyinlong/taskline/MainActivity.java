@@ -1,113 +1,92 @@
 package me.lyinlong.taskline;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
+import me.lyinlong.taskline.widget.mdtabs.MyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import me.lyinlong.taskline.widget.calendarview.CalendarView;
 
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
-
-    /**
-     * 当前年份
-     */
-    public static TextView tvSelectDateYear;
-    /**
-     * 当前月份
-     */
-    public static TextView tvSelectDateMouth;
-
-    private CalendarView mCalendarView;
-
-    private List<String> mDatas;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 添加 Todo的自定义对话框构造器
-        final AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        tvSelectDateYear = (TextView) findViewById(R.id.tvSelectDateYear);
-        tvSelectDateMouth = (TextView) findViewById(R.id.tvSelectDateMouth);
+        setSupportActionBar(toolbar);
 
-        mCalendarView = (CalendarView) findViewById(R.id.calendarView);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
-        // 初始化可选日期
-        initData();
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
-        // 设置可选日期
-        mCalendarView.setTaskDates(mDatas);
-
-        // 设置点击事件
-        mCalendarView.setOnClickDate(new CalendarView.OnClickListener() {
-            @Override
-            public void onClickDateListener(int year, int month, int day) {
-                Toast.makeText(getApplication(), year + "年" + month + "月" + day + "天", Toast.LENGTH_SHORT).show();
-
-                // 获取已选择日期
-//                List<String> dates = mCalendarView.getSelectedDates();
-//                for (String date : dates) {
-//                    Log.e("test", "date: " + date);
-//                }
-
-//                builder.setTitle("提醒我");             //设置标题
-////                builder.setIcon(R.mipmap.ic_launcher);//设置图标，图片id即可
-//
-//                //  载入布局
-//                LayoutInflater inflater = getLayoutInflater();
-//                View layout = inflater.inflate(R.layout.additem,null);
-//                builder.setView(layout);
-//                //  显示
-//                builder.create().show();
-
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, AddItemActivity.class);
-                startActivity(intent);
-
-
-
-            }
-        });
-
-        tvSelectDateYear.setText(mCalendarView.getDate().split("-")[0]+" / ");
-        tvSelectDateMouth.setText(mCalendarView.getDate().split("-")[1]);
+    }
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new MyFragment(), "ONE");
+        adapter.addFragment(new MyFragment(), "TWO");
+        adapter.addFragment(new MyFragment(), "1");
+        adapter.addFragment(new MyFragment(), "2");
+        adapter.addFragment(new MyFragment(), "3");
+        adapter.addFragment(new MyFragment(), "4");
+        adapter.addFragment(new MyFragment(), "5");
+        adapter.addFragment(new MyFragment(), "6");
+        adapter.addFragment(new MyFragment(), "7");
+        adapter.addFragment(new MyFragment(), "8");
+        adapter.addFragment(new MyFragment(), "9");
+        adapter.addFragment(new MyFragment(), "0");
+        adapter.addFragment(new MyFragment(), "11");
+        adapter.addFragment(new MyFragment(), "12");
+        adapter.addFragment(new MyFragment(), "13");
+        adapter.addFragment(new MyFragment(), "14");
+        adapter.addFragment(new MyFragment(), "15");
+        adapter.addFragment(new MyFragment(), "16");
+        adapter.addFragment(new MyFragment(), "17");
+        viewPager.setAdapter(adapter);
     }
 
-    private void initData() {
-        mDatas = new ArrayList<>();
-        mDatas.add("20161022");
-        mDatas.add("20161021");
-        mDatas.add("20161023");
-        mDatas.add("20161024");
-        mDatas.add("20161027");
-        mDatas.add("20161028");
-        mDatas.add("20161019");
-        mDatas.add("20161016");
-        mDatas.add("20161014");
-    }
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<android.support.v4.app.Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-    @Override
-    public void onClick(View view) {
-//        switch (view.getId()){
-//            case R.id.img_select_last_month:
-//                mCalendarView.setLastMonth();
-//                tvSelectDate.setText(mCalendarView.getDate());
-//                break;
-//            case R.id.img_select_next_month:
-//                mCalendarView.setNextMonth();
-//                tvSelectDate.setText(mCalendarView.getDate());
-//                break;
-//        }
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public android.support.v4.app.Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(android.support.v4.app.Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 }

@@ -1,52 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="me.lyinlong.taskline.MainActivity">
 
-    <TextView
-        android:id="@+id/tvSelectDateYear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="10dp"
-        android:textSize="30sp"/>
-    <TextView
-        android:id="@+id/tvSelectDateMouth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="76dp"/>
-
-    <TextView
-        android:id="@+id/tvThisMouthTaskCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="10dp"
-        android:textSize="20sp"/>
-
-
-    <me.lyinlong.taskline.widget.calendarview.WeekView
+<android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="50dp"/>
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <me.lyinlong.taskline.widget.calendarview.CalendarView
-        android:id="@+id/calendarView"
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+    />
+
+    <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabGravity="fill"/>
+</android.support.design.widget.AppBarLayout>
+
+<android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="80dp"/>
-
-</RelativeLayout>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+</android.support.design.widget.CoordinatorLayout>
