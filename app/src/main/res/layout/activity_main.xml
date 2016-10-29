@@ -38,12 +38,12 @@
         android:textSize="20sp"/>
 
 
-    <me.lyinlong.taskline.widget.WeekView
+    <me.lyinlong.taskline.widget.calendarview.WeekView
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="50dp"/>
 
-    <me.lyinlong.taskline.widget.CalendarView
+    <me.lyinlong.taskline.widget.calendarview.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="300dp"

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.lyinlong.taskline.widget.CalendarView;
+import me.lyinlong.taskline.widget.calendarview.CalendarView;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {

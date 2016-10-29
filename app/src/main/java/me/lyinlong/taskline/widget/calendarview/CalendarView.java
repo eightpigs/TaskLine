@@ -1,8 +1,7 @@
-package me.lyinlong.taskline.widget;
+package me.lyinlong.taskline.widget.calendarview;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,14 +9,11 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import me.lyinlong.taskline.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import me.lyinlong.taskline.MainActivity;
-import me.lyinlong.taskline.R;
-import me.lyinlong.taskline.utils.BitmapUtils;
 
 /**
  * 自定义CalendarView

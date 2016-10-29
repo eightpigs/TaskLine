@@ -1,4 +1,4 @@
-package me.lyinlong.taskline.widget;
+package me.lyinlong.taskline.widget.calendarview;
 
 import android.content.Context;
 import android.graphics.Canvas;
