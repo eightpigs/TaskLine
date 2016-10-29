@@ -1,11 +1,11 @@
 package me.lyinlong.taskline.utils;
 
+import me.lyinlong.taskline.Constants;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import me.lyinlong.taskline.Constants;
 
 /**
  * 关于时间的工具类
@@ -77,4 +77,14 @@ public class TimeUtils {
         }
         return null;
     }
+
+    /**
+     * 获取当前日期
+     * @return
+     */
+    public static int getNowDay(){
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.DATE);
+    }
+
 }

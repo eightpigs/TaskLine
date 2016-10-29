@@ -8,6 +8,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import me.lyinlong.taskline.utils.TimeUtils;
+import me.lyinlong.taskline.widget.calendarview.DateUtils;
 import me.lyinlong.taskline.widget.mdtabs.MyFragment;
 
 import java.util.ArrayList;
@@ -40,28 +42,20 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        // 默认选中指定日期
+        tabLayout.getTabAt(TimeUtils.getNowDay()).select();
+
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MyFragment(), "ONE");
-        adapter.addFragment(new MyFragment(), "TWO");
-        adapter.addFragment(new MyFragment(), "1");
-        adapter.addFragment(new MyFragment(), "2");
-        adapter.addFragment(new MyFragment(), "3");
-        adapter.addFragment(new MyFragment(), "4");
-        adapter.addFragment(new MyFragment(), "5");
-        adapter.addFragment(new MyFragment(), "6");
-        adapter.addFragment(new MyFragment(), "7");
-        adapter.addFragment(new MyFragment(), "8");
-        adapter.addFragment(new MyFragment(), "9");
-        adapter.addFragment(new MyFragment(), "0");
-        adapter.addFragment(new MyFragment(), "11");
-        adapter.addFragment(new MyFragment(), "12");
-        adapter.addFragment(new MyFragment(), "13");
-        adapter.addFragment(new MyFragment(), "14");
-        adapter.addFragment(new MyFragment(), "15");
-        adapter.addFragment(new MyFragment(), "16");
-        adapter.addFragment(new MyFragment(), "17");
+
+        // 默认获取本月最大的一天
+        int maxDay = DateUtils.getMonthDays(2016,11);
+        // 生成天数
+        for (int i = 0; i < maxDay; i++) {
+            adapter.addFragment(new MyFragment(), String.valueOf(i+1));
+        }
+        // 设置
         viewPager.setAdapter(adapter);
     }
 
