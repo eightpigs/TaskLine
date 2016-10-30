@@ -1,6 +1,8 @@
 package me.lyinlong.taskline;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -26,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
     // 当前日期
-    private TextView mtvNowDateTime;
+    public TextView mtvNowDateTime;
+    private FloatingActionButton mbtnAddTask;
 
 
     @Override
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mtvNowDateTime = (TextView)findViewById(R.id.tvNowDateTime);
+        mbtnAddTask = (FloatingActionButton)findViewById(R.id.btnAddTask);
 
         String time = TimeUtils.getNowTime("yyyy年MM月");
         // 设置当前时间
@@ -50,7 +54,27 @@ public class MainActivity extends AppCompatActivity {
                 InterfaceUtils.show_cusAlertDialog(MainActivity.this, R.layout.layout_date_choose ,null ,null,true , true , 6);
             }
         });
+        mbtnAddTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, AddItemActivity.class);
+                startActivity(intent);
+            }
+        });
 
+
+    }
+
+    /**
+     * 调用日期控件之后的后续操作
+     * @param year      日期控件返回的年份
+     * @param month     返回的月份
+     * @param day       返回的具体天
+     */
+    public void dialogContinue(Integer year , Integer month , Integer day){
+        mtvNowDateTime.setText(year+"年"+month+"月");
+        tabLayout.getTabAt(day-1).select();
     }
 
     /**
@@ -90,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         // 设置
         viewPager.setAdapter(adapter);
     }
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<android.support.v4.app.Fragment> mFragmentList = new ArrayList<>();

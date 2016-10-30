@@ -72,6 +72,25 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     /**
+     * 调用日期/时间选择的后续操作
+     * @param year      日期控件返回的年份
+     * @param month     返回的月份
+     * @param day       具体的天
+     * @param hour      时间控件返回的小时
+     * @param minute    时间控件返回的分钟
+     * @param type      调用时传入的type
+     */
+    public void dialogContinue(Integer year , Integer month , Integer day , String hour , String minute , Integer type){
+        if(type == 1 || type == 2){
+            TextView tv_temp = type == 1 ? tvAddTaskStartTime : tvAddTaskEndTime;
+            tv_temp.setText(year+"年"+month+"月"+day+"日");
+        }else if(type == 3 || type == 4){
+            TextView tv_temp = type == 1 ? tvAddTaskStartHour : tvTaskEndHour;
+            tv_temp.setText(hour+":"+minute);
+        }
+    }
+
+    /**
      * 进入添加页面设置默认选择的日期时间
      */
     private void setNormalDateTime(){
