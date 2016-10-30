@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvItemTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12:30"
-        android:textSize="30dp"
-    />
-    <TextView
-        android:id="@+id/tvItemContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="85dp"
-        android:text="今天和小明一起去天安门"
-        android:textSize="16dp"
-        android:paddingTop="7dp"
-    />
+        <TextView
+                android:id="@+id/tvTaskItem_time"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textSize="12dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="30dp"
+        />
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="20dp"
+        />
 
 </RelativeLayout>
