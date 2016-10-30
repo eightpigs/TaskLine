@@ -10,4 +10,5 @@
     <color name="colorDefault">#F9FAF9</color>
     <color name="colorBlack">#2d2d2d</color>
     <color name="colorRed">#e42020</color>
+    <color name="colorAccent_1">#008116</color>
 </resources>

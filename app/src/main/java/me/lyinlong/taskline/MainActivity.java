@@ -99,17 +99,18 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         // 默认选中指定日期
-        tabLayout.getTabAt(TimeUtils.getNowDay()).select();
+        tabLayout.getTabAt(TimeUtils.getNowDay()-1).select();
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
+        String [] nowDate = TimeUtils.getNowTime("yyyy-MM").split("-");
         // 默认获取本月最大的一天
-        int maxDay = DateUtils.getMonthDays(2016,11);
+        int maxDay = DateUtils.getMonthDays(Integer.valueOf(nowDate[0]),Integer.valueOf(nowDate[1]));
         // 生成天数
-        for (int i = 0; i < maxDay; i++) {
-            adapter.addFragment(new MyFragment(), String.valueOf(i+1));
+        for (int i = 1; i <= maxDay; i++) {
+            adapter.addFragment(new MyFragment(), String.valueOf(i));
         }
         // 设置
         viewPager.setAdapter(adapter);
