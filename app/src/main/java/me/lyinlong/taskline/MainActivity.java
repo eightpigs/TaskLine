@@ -37,31 +37,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mtvNowDateTime = (TextView)findViewById(R.id.tvNowDateTime);
-        mbtnAddTask = (FloatingActionButton)findViewById(R.id.btnAddTask);
+        try{
 
-        String time = TimeUtils.getNowTime("yyyy年MM月");
-        // 设置当前时间
-        mtvNowDateTime.setText(time);
+            mtvNowDateTime = (TextView)findViewById(R.id.tvNowDateTime);
+            mbtnAddTask = (FloatingActionButton)findViewById(R.id.btnAddTask);
 
-        // 初始化布局
-        initView();
+            String time = TimeUtils.getNowTime("yyyy年MM月");
+            // 设置当前时间
+            mtvNowDateTime.setText(time);
 
-        //事件
-        mtvNowDateTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InterfaceUtils.show_cusAlertDialog(MainActivity.this, R.layout.layout_date_choose ,null ,null,true , true , 6);
-            }
-        });
-        mbtnAddTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, AddItemActivity.class);
-                startActivity(intent);
-            }
-        });
+            // 初始化布局
+            initView();
+
+            //事件
+            mtvNowDateTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    InterfaceUtils.show_cusAlertDialog(MainActivity.this, R.layout.layout_date_choose ,null ,null,true , true , 6);
+                }
+            });
+            mbtnAddTask.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, AddItemActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
 
 
     }
@@ -107,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         String [] nowDate = TimeUtils.getNowTime("yyyy-MM").split("-");
         // 默认获取本月最大的一天
-        int maxDay = DateUtils.getMonthDays(Integer.valueOf(nowDate[0]),Integer.valueOf(nowDate[1]));
+        int maxDay = DateUtils.getMonthDays(Integer.valueOf(nowDate[0]),Integer.valueOf(nowDate[1])-1);
         // 生成天数
         for (int i = 1; i <= maxDay; i++) {
             adapter.addFragment(new MyFragment(), String.valueOf(i));
