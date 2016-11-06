@@ -29,8 +29,9 @@
             android:layout_height="49dp"
             android:text="@string/tip_addTask"
             android:textColor="@color/colorWhite"
-            android:background="@color/colorPrimary"
+            android:padding="10dp"
             android:visibility="gone"
+            android:background="@drawable/corners_border"
             />
 
         <View
