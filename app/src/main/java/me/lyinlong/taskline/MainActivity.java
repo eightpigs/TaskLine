@@ -11,13 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import me.lyinlong.taskline.utils.InterfaceUtils;
 import me.lyinlong.taskline.utils.TimeUtils;
 import me.lyinlong.taskline.widget.calendarview.DateUtils;
 import me.lyinlong.taskline.widget.mdtabs.MyFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
 
         }catch (Exception e){
             System.out.println(e.getMessage());

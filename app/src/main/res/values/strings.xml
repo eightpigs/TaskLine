@@ -12,6 +12,8 @@
 
     <string name="tip_beforehand">提前20分钟</string>
 
+    <string name="tip_addTask">添加任务</string>
+
     <item type="id" name="timeLabelTagName"></item>
 
 </resources>

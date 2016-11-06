@@ -11,4 +11,5 @@
     <color name="colorBlack">#2d2d2d</color>
     <color name="colorRed">#e42020</color>
     <color name="colorAccent_1">#008116</color>
+    <color name="colorTimeTipText">#7e7e7e</color>
 </resources>
