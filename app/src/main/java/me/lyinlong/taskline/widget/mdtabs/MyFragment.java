@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import me.lyinlong.taskline.R;
+import me.lyinlong.taskline.model.TaskItem;
+import me.lyinlong.taskline.model.node.HourNode;
 import me.lyinlong.taskline.widget.list.TaskItemAdapter;
 
 import static me.lyinlong.taskline.R.id.view_clickAddTask;
@@ -24,8 +26,19 @@ public class MyFragment extends android.support.v4.app.Fragment {
 
     public static TextView mTv_addTaskBtn;
 
-    public MyFragment() {
-        // Required empty public constructor
+    /**
+     * 当天的任务列表
+     */
+    private List<TaskItem> todayTaskItems;
+
+    public MyFragment() {  }
+
+    public List<TaskItem> getTodayTaskItems() {
+        return todayTaskItems;
+    }
+
+    public void setTodayTaskItems(List<TaskItem> todayTaskItems) {
+        this.todayTaskItems = todayTaskItems;
     }
 
     @Override
@@ -43,7 +56,7 @@ public class MyFragment extends android.support.v4.app.Fragment {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        List<Map<String, Object>> taskLists = getTaskListByTime(2016,10,10);
+        List<HourNode> taskLists = getTaskListByTime(2016,10,10);
 
         TaskItemAdapter adapter = new TaskItemAdapter(taskLists);
         // 所有的添加按钮
@@ -80,12 +93,13 @@ public class MyFragment extends android.support.v4.app.Fragment {
 
         return view;
     }
-    public List<Map<String, Object>> getTaskListByTime(int year , int month , int day){
-        List<Map<String, Object>> list=new ArrayList<>();
+    public List<HourNode> getTaskListByTime(int year , int month , int day){
+        List<HourNode> list=new ArrayList<>();
         for (int i = 0; i < 24; i++) {
-            Map<String, Object> map=new HashMap<>();
-            map.put("time", (i < 10 ? "0"+i : i)+":00");
-            list.add(map);
+            HourNode node = new HourNode();
+            node.setName( (i < 10 ? "0"+i : i)+":00" );
+            node.setTaskItems(new ArrayList<TaskItem>());
+            list.add(node);
         }
         return list;
     }

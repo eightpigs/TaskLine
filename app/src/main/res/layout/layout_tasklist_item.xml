@@ -14,7 +14,7 @@
         android:textSize="11dp"
         android:paddingLeft="10dp"
         android:textColor="@color/colorTimeTipText"
-    />
+        />
     <RelativeLayout
         android:id="@+id/view_clickShowAdd"
         android:layout_width="match_parent"
@@ -36,6 +36,8 @@
 
         <View
             android:layout_width="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
             android:layout_height="1px"
             android:background="@android:color/darker_gray"
             android:layout_marginTop="48.8dp"

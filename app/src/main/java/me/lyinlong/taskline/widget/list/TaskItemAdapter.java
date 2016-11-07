@@ -8,9 +8,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Map;
 
 import me.lyinlong.taskline.R;
+import me.lyinlong.taskline.model.node.HourNode;
 
 /**
  * 自定义RecyclerView的数据适配器
@@ -26,9 +26,9 @@ public class TaskItemAdapter extends RecyclerView.Adapter {
     // 接口变量(click)
     private OnItemClickListener  onItemClickListener = null;
 
-    private List<Map<String, Object>> mItems;
+    private List<HourNode> mItems;
 
-    public TaskItemAdapter(List<Map<String, Object>> items){
+    public TaskItemAdapter(List<HourNode> items){
         this.mItems = items;
 
     }
@@ -45,16 +45,14 @@ public class TaskItemAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final ViewHolder vh = (ViewHolder) holder;
-        String time = String.valueOf(mItems.get(position).get("time"));
-        vh.getTime().setText(time);
-        // 如果是第一个,设置marginTop为10
-        if(time.equals("00:00")){
-            RelativeLayout parent = ((RelativeLayout)vh.getTime().getParent());
-            ViewGroup.MarginLayoutParams margin = new ViewGroup.MarginLayoutParams(parent.getLayoutParams());
-            margin.setMargins(margin.getMarginStart() , 10 , margin.getMarginEnd() , margin.bottomMargin);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(margin);
-            parent.setLayoutParams(layoutParams);
-        }
+        HourNode node = mItems.get(position);
+        vh.getTime().setText(node.getName());
+        // 绘制每个小时的任务内容
+//        RelativeLayout parent = (RelativeLayout)vh.getTime().getParent();
+//        ViewGroup.MarginLayoutParams margin = new ViewGroup.MarginLayoutParams(parent.getChildAt(1).getLayoutParams());
+//        margin.setMargins(margin.leftMargin , 10 , margin.rightMargin , margin.bottomMargin);
+//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(margin);
+//        parent.getChildAt(1).setLayoutParams(layoutParams);
     }
 
     @Override
@@ -73,7 +71,6 @@ public class TaskItemAdapter extends RecyclerView.Adapter {
             super(itemView);
             time = (TextView) itemView.findViewById(R.id.tvTaskItem_time);
             mViewClickAddTask = (RelativeLayout)itemView.findViewById(R.id.view_clickShowAdd);
-
             mViewClickAddTask.setOnClickListener(this);
         }
 
