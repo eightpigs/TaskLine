@@ -1,5 +1,6 @@
 package me.lyinlong.taskline.widget.mdtabs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import me.lyinlong.taskline.AddItemActivity;
 import me.lyinlong.taskline.R;
 import me.lyinlong.taskline.model.TaskItem;
 import me.lyinlong.taskline.model.node.HourNode;
@@ -22,8 +24,6 @@ import static me.lyinlong.taskline.R.id.view_clickAddTask;
 public class MyFragment extends android.support.v4.app.Fragment {
 
     private RecyclerView mRecyclerView;
-
-    public static TextView mTv_addTaskBtn;
 
     /**
      * 当天的任务列表
@@ -52,7 +52,6 @@ public class MyFragment extends android.support.v4.app.Fragment {
         final View view = inflater.inflate(R.layout.fragment_one, container, false);
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.rv_taskList);
-
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         List<HourNode> taskLists = getTaskListByTime(2016,10,10);
@@ -84,21 +83,33 @@ public class MyFragment extends android.support.v4.app.Fragment {
             adapter.setOnItemClickListener(new TaskItemAdapter.OnItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                // 获取添加按钮控件
-                TextView tempTextView = (TextView)view.findViewById(view_clickAddTask);
-                // 如果该控件没有在所有的控件列表中(控件列表用于快速做单选显示)
-                if(!view_clickAddTaskBtns.contains(tempTextView))
-                    view_clickAddTaskBtns.add(tempTextView);
-                // 把以前选中的都隐藏
-                for (TextView btn : view_clickAddTaskBtns) {
-                    btn.setVisibility(View.GONE);
+
+                // TextView和RelativeLayout 都使用了本自定义事件, 如果view强转为TextView失败,则view是RelativeLayout
+                try{
+                    // 点击添加按钮 , 添加任务
+                    TextView tv_addTask = (TextView)view;
+                    Intent intent = new Intent();
+                    intent.setClass(view.getContext(), AddItemActivity.class);
+                    startActivity(intent);
+
+                }catch (Exception e){
+                    // 显示添加按钮
+                    // 获取添加按钮控件
+                    TextView tempTextView = (TextView)view.findViewById(view_clickAddTask);
+
+                    // 如果该控件没有在所有的控件列表中(控件列表用于快速做单选显示)
+                    if(!view_clickAddTaskBtns.contains(tempTextView))
+                        view_clickAddTaskBtns.add(tempTextView);
+                    // 把以前选中的都隐藏
+                    for (TextView btn : view_clickAddTaskBtns) {
+                        btn.setVisibility(View.GONE);
+                    }
+
+                    // 显示当前时间的添加按钮
+                    tempTextView.setVisibility(View.VISIBLE);
+
+                    // 隐藏当前时间的所有任务
                 }
-
-                // 显示当前时间的添加按钮
-                tempTextView.setVisibility(View.VISIBLE);
-
-                // 隐藏当前时间的所有任务
-
             }
         });
 

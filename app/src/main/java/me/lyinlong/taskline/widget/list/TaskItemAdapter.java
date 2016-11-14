@@ -94,6 +94,11 @@ public class TaskItemAdapter extends RecyclerView.Adapter {
         // 由于在布局文件中,将整体布局margin-top:-10dp ,所以每个日期下面的第一个时间(00:00)会有部分没显示
         // 通过判断是否是第一个时间(00:00) , 设置padding-top:10;
 
+
+
+        // 添加事件
+
+
         return new ViewHolder(view);
     }
 
@@ -134,12 +139,19 @@ public class TaskItemAdapter extends RecyclerView.Adapter {
          */
         private TextView time;
         private RelativeLayout mViewClickAddTask;
+        private TextView tv_addTask;
 
         ViewHolder(View itemView) {
             super(itemView);
             time = (TextView) itemView.findViewById(R.id.tvTaskItem_time);
             mViewClickAddTask = (RelativeLayout)itemView.findViewById(R.id.view_clickShowAdd);
             mViewClickAddTask.setOnClickListener(this);
+
+            // 添加按钮
+            tv_addTask = (TextView) itemView.findViewById(R.id.view_clickAddTask);
+            tv_addTask.setOnClickListener(this);
+
+
         }
 
         public TextView getTime() {
