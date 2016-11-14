@@ -10,7 +10,7 @@ public class TaskItem {
     /**
      * 任务唯一标识
      */
-    private Integer token;
+    private String token;
     /**
      * 任务名称
      */
@@ -34,7 +34,7 @@ public class TaskItem {
     /**
      * 是否是全天
      */
-    private Boolean isAddDay;
+    private Boolean isAllDay;
     /**
      * 提前提醒时间(单位:分)
      */
@@ -42,22 +42,22 @@ public class TaskItem {
 
     public TaskItem() {  }
 
-    public TaskItem(Integer token, String name, String intro, String createTime, String startTime, String endTime, Boolean isAddDay, Integer beforehandWarnTime) {
+    public TaskItem(String token, String name, String intro, String createTime, String startTime, String endTime, Boolean isAllDay, Integer beforehandWarnTime) {
         this.token = token;
         this.name = name;
         this.intro = intro;
         this.createTime = createTime;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.isAddDay = isAddDay;
+        this.isAllDay = isAllDay;
         this.beforehandWarnTime = beforehandWarnTime;
     }
 
-    public Integer getToken() {
+    public String getToken() {
         return token;
     }
 
-    public void setToken(Integer token) {
+    public void setToken(String token) {
         this.token = token;
     }
 
@@ -101,12 +101,12 @@ public class TaskItem {
         this.endTime = endTime;
     }
 
-    public Boolean getAddDay() {
-        return isAddDay;
+    public Boolean getAllDay() {
+        return isAllDay;
     }
 
-    public void setAddDay(Boolean addDay) {
-        isAddDay = addDay;
+    public void setAllDay(Boolean allDay) {
+        isAllDay = allDay;
     }
 
     public Integer getBeforehandWarnTime() {

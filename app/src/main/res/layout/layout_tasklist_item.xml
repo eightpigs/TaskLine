@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="-10dp"
+    android:layout_marginTop = "-10dp"
     >
 
     <TextView
         android:id="@+id/tvTaskItem_time"
         android:layout_width="60dp"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:paddingTop="43dp"
         android:text="00:00"
         android:textSize="11dp"
@@ -18,20 +18,29 @@
     <RelativeLayout
         android:id="@+id/view_clickShowAdd"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="10dp"
+
         >
+
+        <LinearLayout
+            android:id="@+id/ll_dayTaskList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+        </LinearLayout>
 
         <TextView
             android:id="@+id/view_clickAddTask"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="match_parent"
             android:text="@string/tip_addTask"
             android:textColor="@color/colorWhite"
             android:padding="10dp"
             android:visibility="gone"
-            android:background="@drawable/corners_border"
+            android:background="@drawable/corners_border_by_addtask"
             />
 
         <View

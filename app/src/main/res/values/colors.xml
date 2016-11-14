@@ -12,4 +12,6 @@
     <color name="colorRed">#e42020</color>
     <color name="colorAccent_1">#008116</color>
     <color name="colorTimeTipText">#7e7e7e</color>
+    <color name="colorTaskItemBG">#56bcff</color>
+    <color name="colorAddTask">#a43fd4e1</color>
 </resources>
