@@ -71,12 +71,16 @@ public class TaskItemAdapter extends RecyclerView.Adapter {
         ll_taskItems_height = 0;
 
         // 依次添加数据
-        for (TaskItem taskItem : allDayTasks.get(day_length)) {
-            ll_taskItems.addView(
-                    generateTaskItemView(ll_taskItems , taskItem.getName() , taskItem.getToken()) , 0
-            );
-            ll_taskItems_height+= 200;
+        if(allDayTasks != null && allDayTasks.size() > 0){
+            for (TaskItem taskItem : allDayTasks.get(day_length)) {
+                ll_taskItems.addView(
+                        generateTaskItemView(ll_taskItems , taskItem.getName() , taskItem.getToken()) , 0
+                );
+                ll_taskItems_height+= 200;
+            }
         }
+        
+        ll_taskItems_height = ll_taskItems_height == 0 ? 200 : ll_taskItems_height;
 
         // 设置点击按钮的高度 = 任务列表的高度
         TextView tv_addbtn = ((TextView)content.getChildAt(1));

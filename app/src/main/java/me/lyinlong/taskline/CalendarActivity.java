@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-import me.lyinlong.taskline.widget.calendarview.CalendarView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.lyinlong.taskline.widget.calendarview.CalendarView;
 
 public class CalendarActivity extends AppCompatActivity implements View.OnClickListener  {
 
@@ -52,30 +52,11 @@ public class CalendarActivity extends AppCompatActivity implements View.OnClickL
         mCalendarView.setOnClickDate(new CalendarView.OnClickListener() {
             @Override
             public void onClickDateListener(int year, int month, int day) {
-                Toast.makeText(getApplication(), year + "年" + month + "月" + day + "天", Toast.LENGTH_SHORT).show();
-
-                // 获取已选择日期
-//                List<String> dates = mCalendarView.getSelectedDates();
-//                for (String date : dates) {
-//                    Log.e("test", "date: " + date);
-//                }
-
-//                builder.setTitle("提醒我");             //设置标题
-////                builder.setIcon(R.mipmap.ic_launcher);//设置图标，图片id即可
-//
-//                //  载入布局
-//                LayoutInflater inflater = getLayoutInflater();
-//                View layout = inflater.inflate(R.layout.additem,null);
-//                builder.setView(layout);
-//                //  显示
-//                builder.create().show();
+//                Toast.makeText(getApplication(), year + "年" + month + "月" + day + "天", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent();
                 intent.setClass(CalendarActivity.this, AddItemActivity.class);
                 startActivity(intent);
-
-
-
             }
         });
 

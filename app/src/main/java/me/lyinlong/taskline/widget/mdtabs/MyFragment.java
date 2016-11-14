@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import me.lyinlong.taskline.AddItemActivity;
 import me.lyinlong.taskline.R;
@@ -58,22 +57,22 @@ public class MyFragment extends android.support.v4.app.Fragment {
 
         List<List<TaskItem>> allDayTasks = new ArrayList<>();
         List<TaskItem> taskItems = new ArrayList<>();
-        for (int i = 0; i < 23; i++) {
-            allDayTasks.add(
-                    new ArrayList<TaskItem>(){{
-                        add(new TaskItem(
-                                UUID.randomUUID().toString() ,
-                                "测试任务内容" ,
-                                "任务的详细说明",
-                                "2016-10-01",
-                                "2016-10-10",
-                                "2016-11-11",
-                                true ,
-                                10
-                        ));
-                    }}
-            );
-        }
+//        for (int i = 0; i < 23; i++) {
+//            allDayTasks.add(
+//                    new ArrayList<TaskItem>(){{
+//                        add(new TaskItem(
+//                                UUID.randomUUID().toString() ,
+//                                "测试任务内容" ,
+//                                "任务的详细说明",
+//                                "2016-10-01",
+//                                "2016-10-10",
+//                                "2016-11-11",
+//                                true ,
+//                                10
+//                        ));
+//                    }}
+//            );
+//        }
 
 
         TaskItemAdapter adapter = new TaskItemAdapter(taskLists , allDayTasks);
