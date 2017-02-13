@@ -1,6 +1,6 @@
 package me.lyinlong.taskline.utils;
 
-import me.lyinlong.taskline.Constants;
+import me.lyinlong.taskline.config.Constants;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

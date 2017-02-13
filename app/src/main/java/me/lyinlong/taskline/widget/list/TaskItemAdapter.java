@@ -74,7 +74,7 @@ public class TaskItemAdapter extends RecyclerView.Adapter {
         if(allDayTasks != null && allDayTasks.size() > 0){
             for (TaskItem taskItem : allDayTasks.get(day_length)) {
                 ll_taskItems.addView(
-                        generateTaskItemView(ll_taskItems , taskItem.getName() , taskItem.getToken()) , 0
+                        generateTaskItemView(ll_taskItems , taskItem.getContent() , taskItem.getToken()) , 0
                 );
                 ll_taskItems_height+= 200;
             }

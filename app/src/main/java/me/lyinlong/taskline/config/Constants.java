@@ -1,4 +1,6 @@
-package me.lyinlong.taskline;
+package me.lyinlong.taskline.config;
+
+import okhttp3.OkHttpClient;
 
 /**
  * 相关的常量类
@@ -11,5 +13,7 @@ public class Constants {
 
     // 首页中每天24小时的数量(主要用于改变第一个item的信息)
     public static int TASK_ITEM_COUNT = 0;
+
+    public static OkHttpClient OK_HTTP_CLIENT = new OkHttpClient();
 
 }

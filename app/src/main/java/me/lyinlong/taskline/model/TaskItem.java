@@ -14,7 +14,7 @@ public class TaskItem {
     /**
      * 任务名称
      */
-    private String name;
+    private String content;
     /**
      * 任务说明
      */
@@ -34,23 +34,28 @@ public class TaskItem {
     /**
      * 是否是全天
      */
-    private Boolean isAllDay;
+    private Boolean allDay;
     /**
      * 提前提醒时间(单位:分)
      */
-    private Integer beforehandWarnTime;
+    private Integer advance;
+    /**
+     * 执行地址
+     */
+    private String address;
 
     public TaskItem() {  }
 
-    public TaskItem(String token, String name, String intro, String createTime, String startTime, String endTime, Boolean isAllDay, Integer beforehandWarnTime) {
+    public TaskItem(String token, String content, String intro, String createTime, String startTime, String endTime, Boolean allDay, Integer advance, String address) {
         this.token = token;
-        this.name = name;
+        this.content = content;
         this.intro = intro;
         this.createTime = createTime;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.isAllDay = isAllDay;
-        this.beforehandWarnTime = beforehandWarnTime;
+        this.allDay = allDay;
+        this.advance = advance;
+        this.address = address;
     }
 
     public String getToken() {
@@ -61,12 +66,12 @@ public class TaskItem {
         this.token = token;
     }
 
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getIntro() {
@@ -102,18 +107,26 @@ public class TaskItem {
     }
 
     public Boolean getAllDay() {
-        return isAllDay;
+        return allDay;
     }
 
     public void setAllDay(Boolean allDay) {
-        isAllDay = allDay;
+        this.allDay = allDay;
     }
 
-    public Integer getBeforehandWarnTime() {
-        return beforehandWarnTime;
+    public String getAddress() {
+        return address;
     }
 
-    public void setBeforehandWarnTime(Integer beforehandWarnTime) {
-        this.beforehandWarnTime = beforehandWarnTime;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getAdvance() {
+        return advance;
+    }
+
+    public void setAdvance(Integer advance) {
+        this.advance = advance;
     }
 }

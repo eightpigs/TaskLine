@@ -9,11 +9,30 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.*;
+
+import java.io.IOException;
+import java.util.Map;
+
+import me.lyinlong.taskline.config.Constants;
+import me.lyinlong.taskline.config.ServerAPI;
+import me.lyinlong.taskline.model.http.API;
+import me.lyinlong.taskline.model.TaskItem;
+import me.lyinlong.taskline.model.http.ResponseBody;
 import me.lyinlong.taskline.utils.InterfaceUtils;
 import me.lyinlong.taskline.utils.KeyboradUtils;
+import me.lyinlong.taskline.utils.OkHttpUtils;
+import me.lyinlong.taskline.utils.ReflectUtils;
 import me.lyinlong.taskline.utils.TimeUtils;
 
 import static me.lyinlong.taskline.AddItemActivity._this;
+import static me.lyinlong.taskline.AddItemActivity.etAddress;
+import static me.lyinlong.taskline.AddItemActivity.etTaskContent;
+import static me.lyinlong.taskline.AddItemActivity.metRemind;
+import static me.lyinlong.taskline.AddItemActivity.switchAllDay;
+import static me.lyinlong.taskline.AddItemActivity.tvAddTaskEndTime;
+import static me.lyinlong.taskline.AddItemActivity.tvAddTaskStartHour;
+import static me.lyinlong.taskline.AddItemActivity.tvAddTaskStartTime;
+import static me.lyinlong.taskline.AddItemActivity.tvTaskEndHour;
 
 public class AddItemActivity extends AppCompatActivity {
 
@@ -32,9 +51,18 @@ public class AddItemActivity extends AppCompatActivity {
     // 时间选择
     private TimePicker mTimePicker;
     // 提醒时间
-    private EditText metRemind;
+    public static EditText metRemind;
+    // 任务具体内容
+    public static EditText etTaskContent;
+    // 任务执行地点
+    public static EditText etAddress;
+    /**
+     * 是否全天执行
+     */
+    public static Switch switchAllDay;
 
     public static Toast toast;
+
     public static AddItemActivity _this;
 
     @Override
@@ -54,6 +82,9 @@ public class AddItemActivity extends AppCompatActivity {
         mDatePicker = (DatePicker)findViewById(R.id.dpChooseDate);
         mTimePicker = (TimePicker)findViewById(R.id.tpChooseTime);
         metRemind = (EditText)findViewById(R.id.etRemind);
+        etTaskContent = (EditText)findViewById(R.id.etTaskContent);
+        etAddress = (EditText)findViewById(R.id.etLocation);
+        switchAllDay = (Switch)findViewById(R.id.switchAllDay);
 
         // 设置默认选择的日期时间
         setNormalDateTime();
@@ -69,6 +100,7 @@ public class AddItemActivity extends AppCompatActivity {
                return false;
            }
        });
+
     }
 
     /**
@@ -151,7 +183,40 @@ class DoubleClickView extends GestureDetector.SimpleOnGestureListener {
     // event when double tap occurs
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        AddItemActivity.toast.makeText(_this,"已保存",Toast.LENGTH_SHORT).show();
+
+        if(etTaskContent.getText() == null || etTaskContent.getText().toString().equals("")) {
+            AddItemActivity.toast.makeText(_this, "需要填写具体任务内容才能进行保存", Toast.LENGTH_SHORT).show();
+            etTaskContent.setFocusable(true);
+            etTaskContent.requestFocus();
+            return false;
+        }
+
+        TaskItem item = new TaskItem();
+        item.setContent(etTaskContent.getText().toString());
+        item.setAllDay(switchAllDay.isChecked());
+        item.setStartTime( tvAddTaskStartTime.getText().toString() + " " + tvAddTaskStartHour.getText().toString() );
+        item.setEndTime( tvAddTaskEndTime.getText().toString() + " " + tvTaskEndHour.getText().toString()  );
+        item.setAddress( etAddress.getText() == null ? "" : etAddress.getText().toString() );
+        item.setAdvance( metRemind.getText().toString().equals("") ? 20 : Integer.parseInt(metRemind.getText().toString()) );
+
+        final Map<String, String> attrValByPublic = ReflectUtils.getAttrValByPublic(item);
+
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                String prompt = null;
+                API api = ServerAPI.API_ADD_TASK_ITEM;
+                if(api.getMethod().equals("get")){
+                    ResponseBody responseBody = OkHttpUtils.asyncGet(api.getUrl(), attrValByPublic);
+                    prompt = "["+responseBody.getCode()+"] "+responseBody.getMsg();
+                } else
+                    System.out.printf("使用Post方式请求");
+
+                AddItemActivity.toast.makeText(_this, prompt,Toast.LENGTH_SHORT).show();
+            }
+        }).start();
+
+
         return true;
     }
 
