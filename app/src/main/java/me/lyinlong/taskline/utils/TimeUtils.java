@@ -87,4 +87,14 @@ public class TimeUtils {
         return calendar.get(Calendar.DATE);
     }
 
+    /**
+     * 通过列表的索引获取时间
+     * @param position
+     * @return
+     */
+    public static String getTimeByPosition(int position){
+        if(position > 23)
+            return null;
+        return position < 10 ? "0"+position+":00" : position + ":00";
+    }
 }

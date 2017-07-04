@@ -9,7 +9,7 @@
         android:id="@+id/tpChooseTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:headerBackground="@color/colorLine"
+        android:headerBackground="@color/colorPrimary"
     />
 
 </LinearLayout>

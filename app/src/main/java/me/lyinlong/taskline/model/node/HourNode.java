@@ -14,7 +14,7 @@ public class HourNode {
     /**
      * 时间值
      */
-    private String name;
+    private String hour;
     /**
      * 该时间的任务
      */
@@ -22,17 +22,17 @@ public class HourNode {
 
     public HourNode() {  }
 
-    public HourNode(String name, List<TaskItem> taskItems) {
-        this.name = name;
+    public HourNode(String hour, List<TaskItem> taskItems) {
+        this.hour = hour;
         this.taskItems = taskItems;
     }
 
-    public String getName() {
-        return name;
+    public String getHour() {
+        return hour;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 
     public List<TaskItem> getTaskItems() {

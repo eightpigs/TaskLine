@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4fb7fc</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#0c98ef</color>
+    <color name="colorPrimaryDark">#0c98ef</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorLine">#0c98ef</color>
     <color name="colorWhite">#FFF</color>
     <color name="colorTipText">#555</color>
     <color name="colorHint">#999</color>
@@ -12,6 +11,5 @@
     <color name="colorRed">#e42020</color>
     <color name="colorAccent_1">#008116</color>
     <color name="colorTimeTipText">#7e7e7e</color>
-    <color name="colorTaskItemBG">#56bcff</color>
     <color name="colorAddTask">#a43fd4e1</color>
 </resources>

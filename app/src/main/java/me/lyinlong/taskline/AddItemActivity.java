@@ -185,7 +185,7 @@ class DoubleClickView extends GestureDetector.SimpleOnGestureListener {
     public boolean onDoubleTap(MotionEvent e) {
 
         if(etTaskContent.getText() == null || etTaskContent.getText().toString().equals("")) {
-            AddItemActivity.toast.makeText(_this, "需要填写具体任务内容才能进行保存", Toast.LENGTH_SHORT).show();
+            AddItemActivity.toast.makeText(_this, "请填写提醒内容", Toast.LENGTH_SHORT).show();
             etTaskContent.setFocusable(true);
             etTaskContent.requestFocus();
             return false;

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.lyinlong.taskline.widget.calendarview.CalendarView;
+import me.lyinlong.taskline.component.calendarview.CalendarView;
 
 public class CalendarActivity extends AppCompatActivity implements View.OnClickListener  {
 

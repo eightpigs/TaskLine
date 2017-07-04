@@ -1,4 +1,4 @@
-package me.lyinlong.taskline.widget.mdtabs;
+package me.lyinlong.taskline.component.mdtabs;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +10,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import me.lyinlong.taskline.AddItemActivity;
 import me.lyinlong.taskline.R;
 import me.lyinlong.taskline.model.TaskItem;
 import me.lyinlong.taskline.model.node.HourNode;
-import me.lyinlong.taskline.widget.list.TaskItemAdapter;
+import me.lyinlong.taskline.component.list.TaskItemAdapter;
 
 import static me.lyinlong.taskline.R.id.view_clickAddTask;
 
@@ -47,35 +51,38 @@ public class MyFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         final View view = inflater.inflate(R.layout.fragment_one, container, false);
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.rv_taskList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        List<HourNode> taskLists = getTaskListByTime(2016,10,10);
+        Map<String, HourNode> taskListByTime = getTaskListByTime(2017, 07, 01);
+
 
         List<List<TaskItem>> allDayTasks = new ArrayList<>();
         List<TaskItem> taskItems = new ArrayList<>();
-//        for (int i = 0; i < 23; i++) {
-//            allDayTasks.add(
-//                    new ArrayList<TaskItem>(){{
-//                        add(new TaskItem(
-//                                UUID.randomUUID().toString() ,
-//                                "测试任务内容" ,
-//                                "任务的详细说明",
-//                                "2016-10-01",
-//                                "2016-10-10",
-//                                "2016-11-11",
-//                                true ,
-//                                10
-//                        ));
-//                    }}
-//            );
-//        }
+
+        TaskItem item = new TaskItem(
+                UUID.randomUUID().toString() ,
+                "任务内容",
+                "任务的具体描述",
+                "2017-07-01",
+                "2017-07-01",
+                "2017-07-01",
+                true,
+                10,
+                "北京"
+        );
+
+        taskItems.add(item);
+
+        taskListByTime.get("00:00").getTaskItems().add(item);
+        taskListByTime.get("00:00").getTaskItems().add(item);
+        taskListByTime.get("00:00").getTaskItems().add(item);
 
 
-        TaskItemAdapter adapter = new TaskItemAdapter(taskLists , allDayTasks);
+        TaskItemAdapter adapter = new TaskItemAdapter(taskListByTime , allDayTasks);
 
         // 所有的添加按钮
         final List<TextView> view_clickAddTaskBtns = new ArrayList<>();
@@ -130,18 +137,18 @@ public class MyFragment extends android.support.v4.app.Fragment {
 
         return view;
     }
-    public List<HourNode> getTaskListByTime(int year , int month , int day){
-        List<HourNode> list = new ArrayList<>();
+    public Map<String, HourNode> getTaskListByTime(int year , int month , int day){
+        Map<String, HourNode> hourNodeMap = new HashMap();
 
-        List<TaskItem> items = new ArrayList<>();
 
         for (int i = 0; i < 24; i++) {
+            List<TaskItem> items = new ArrayList<>();
             HourNode node = new HourNode();
-            node.setName( (i < 10 ? "0"+i : i)+":00" );
+            node.setHour( (i < 10 ? "0"+i : i)+":00" );
             node.setTaskItems(items);
-            list.add(node);
+            hourNodeMap.put(node.getHour(), node);
         }
-        return list;
+        return hourNodeMap;
     }
 
 

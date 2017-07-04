@@ -17,8 +17,8 @@ import java.util.List;
 
 import me.lyinlong.taskline.utils.InterfaceUtils;
 import me.lyinlong.taskline.utils.TimeUtils;
-import me.lyinlong.taskline.widget.calendarview.DateUtils;
-import me.lyinlong.taskline.widget.mdtabs.MyFragment;
+import me.lyinlong.taskline.component.calendarview.DateUtils;
+import me.lyinlong.taskline.component.mdtabs.MyFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -82,7 +82,11 @@ public class MainActivity extends AppCompatActivity {
      * @param day       返回的具体天
      */
     public void dialogContinue(Integer year , Integer month , Integer day){
+
+
         mtvNowDateTime.setText(year+"年"+month+"月");
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        initTabs(viewPager, new String[]{String.valueOf(year) , String.valueOf(month)});
         tabLayout.getTabAt(day-1).select();
     }
 
@@ -102,21 +106,37 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setScrollbarFadingEnabled(true);
         viewPager.setHorizontalScrollBarEnabled(true);
         viewPager.setVerticalScrollBarEnabled(true);
-        setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        // 初始化日期Tabs
+        initTabs(viewPager, null);
 
         // 默认选中指定日期
         tabLayout.getTabAt(TimeUtils.getNowDay()-1).select();
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    /**
+     * 初始化日期的Tabs
+     * @param viewPager Pager
+     * @param date      具体的日期（根据日期生成该月份的天数）
+     */
+    private void initTabs(ViewPager viewPager, String[] date){
+        setupViewPager(viewPager, date);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    /**
+     * 设置Pager内容，如果传入的日期数组为空，使用当前的日期
+     * @param viewPager     Pager
+     * @param date          传入的日期数组
+     */
+    private void setupViewPager(ViewPager viewPager, String[] date) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        String [] nowDate = TimeUtils.getNowTime("yyyy-MM").split("-");
+        if(date == null)
+            date = TimeUtils.getNowTime("yyyy-MM").split("-");
         // 默认获取本月最大的一天
-        int maxDay = DateUtils.getMonthDays(Integer.valueOf(nowDate[0]),Integer.valueOf(nowDate[1])-1);
+        int maxDay = DateUtils.getMonthDays(Integer.valueOf(date[0]),Integer.valueOf(date[1])-1);
         // 生成天数
         for (int i = 1; i <= maxDay; i++) {
             adapter.addFragment(new MyFragment(), String.valueOf(i));

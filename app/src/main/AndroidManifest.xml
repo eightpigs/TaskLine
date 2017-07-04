@@ -18,9 +18,12 @@
         <activity android:name=".AddItemActivity"/>
         <activity android:name=".CalendarActivity">
         </activity>
+
     </application>
 
-    <!--<permission android:name="android.permission.INTERNET"></permission>-->
+
     <uses-permission android:name="android.permission.INTERNET"/>
+
+
 
 </manifest>

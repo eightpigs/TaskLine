@@ -1,4 +1,4 @@
-package me.lyinlong.taskline.widget.calendarview;
+package me.lyinlong.taskline.component.calendarview;
 
 import java.util.Calendar;
 

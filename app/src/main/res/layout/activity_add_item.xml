@@ -10,7 +10,7 @@
         android:id="@+id/rlTaskContent"
         android:layout_width="match_parent"
         android:layout_height="209dp"
-        android:background="@color/colorLine"
+        android:background="@color/colorPrimary"
         android:paddingBottom="20dp">
 
         <EditText
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:hint="@string/placeholder_additem_title_hint"
-            android:backgroundTint="@color/colorLine"
+            android:backgroundTint="@color/colorPrimary"
             android:padding="10dp"
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorWhite"
